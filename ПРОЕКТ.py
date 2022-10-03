@@ -1,10 +1,14 @@
+# импортируем библиотеку бота
 import telebot
 from telebot import types
 import requests
 
+# указываем к камому боту обращаемся, в класс TeleBot прописываем бот, с которым будем взаимодействовать
 bot = telebot.TeleBot('5540571238:AAEXAT_0XVt_l_wb7864JgZdSvtGq5M0tyo')  # @test324234324_bot
 
+# для отслеживания команд прописываем декоратор с обращением к специальному методу message_handler
 @bot.message_handler(commands=['start'])
+# создаем функцию для указанной команды  с указанем параметра message (может быть команда, либо текствовая запись)
 def website(message):
     # создаем стандартные кнопки (resize_keyboard=True - для корректного вывода кнопок на ПК и телефоне)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
@@ -12,23 +16,26 @@ def website(message):
     button2 = types.KeyboardButton('Прогноз подгоды')
     # формируем структуру
     markup.add(button1, button2)
-    # для отправки сообщения прикрепляем кнопку
-    bot.send_message(message.chat.id, 'Сделайте выбор', reply_markup=markup)
+    # приветствуем пользователя с обращение по имени
+    bot.send_message(message.chat.id, f'''Привет, {message.from_user.first_name}!
+Я БОТ-ОРГАНАЙЗЕР
+пользуйся наздоровье :)
+выбери что тебе нужно''', reply_markup=markup) #reply_markup=keyboard для присвоения кнопок
 
-
+# выбираем кнопки (прогноз погоды будет тут же, еще в разработке)
 @bot.message_handler(content_types=['text'])
 def bot_message(message):
     if message.text == 'Калькулятор':
         calc()
-        bot.send_message(message.chat.id, 'Работает функция калькулятор', reply_markup=calc())
+        bot.send_message(message.chat.id, 'Тискай на кнопки', reply_markup=calc())
 
-
+# создаем функцию калькулятора
 def calc():
-    global value
-    value = ''
+    global value # для доступа к переменной
+    value = '' # хранит текущее значение калькулятора
     global old_value
-    old_value = ''
-
+    old_value = '' # чтобы не изменять сообщение на то же самое
+    # создаем клавиатуру
     keyboard = telebot.types.InlineKeyboardMarkup()
 
     keyboard = telebot.types.InlineKeyboardMarkup()
@@ -65,11 +72,11 @@ def calc():
             bot.send_message(message.chat.id, '0', reply_markup=keyboard)  # !!!!!!!!! message.from_user.id
         else:
             bot.send_message(message.chat.id, value, reply_markup=keyboard)
-
+# добавляем обработчик событий
     @bot.callback_query_handler(func=lambda call: True)
     def callback_func(query):
         global value, old_value
-        data = query.data
+        data = query.data # data это то, что возвращает кнопка
 
         if data == '**':
             pass
@@ -80,11 +87,11 @@ def calc():
                 value = value[:len(value) - 1]
         elif data == '=':
             try:
-                value = str(eval(value))
+                value = str(eval(value)) # считаем значения при помощи функции eval
             except:
                 value = 'Деление на 0!'
         else:
-            value += data
+            value += data # иначе любой символ
 
         if (value != old_value and value != '') or (0 != old_value and value == ''):
             if value == '':
@@ -103,5 +110,5 @@ def calc():
 
 
 
-
+# запускаем код в работу
 bot.polling(none_stop=True)

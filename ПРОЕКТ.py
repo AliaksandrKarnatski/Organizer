@@ -108,8 +108,5 @@ def calc():
         if value == 'Деление на 0!': value = ''
     return keyboard
 
-
-
-
 # запускаем код в работу
 bot.polling(none_stop=True)

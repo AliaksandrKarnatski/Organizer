@@ -1,6 +1,6 @@
 # импортируем библиотеку бота
 import telebot
-from telebot import types
+from telebot import types #для создания кнопки служит объект types, который нужно импортировать из библиотеки
 import requests
 
 # указываем к камому боту обращаемся, в класс TeleBot прописываем бот, с которым будем взаимодействовать
@@ -65,6 +65,7 @@ def calc():
                  telebot.types.InlineKeyboardButton(',', callback_data=','),
                  telebot.types.InlineKeyboardButton('=', callback_data='='))
 
+    # отслеживание текста введенного пользователем (на текст пользователя будет ответ)
     @bot.message_handler(content_types=['text'])
     def bot_message(message):
         global value

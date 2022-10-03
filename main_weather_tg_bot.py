@@ -11,9 +11,9 @@ bot = Bot(token=tg_bot_token)
 dp = Dispatcher(bot)
 
 
-@dp.message_handler(commands=["pogoda"])
+@dp.message_handler(commands=["start"])
 async def start_command(message: types.Message):
-    await message.reply("Привет! Напиши мне название города и я пришлю сводку погоды!")
+    await message.reply(f'''{message.from_user.first_name}, напиши город, что бы узнат погоду''')
 
 
 @dp.message_handler()

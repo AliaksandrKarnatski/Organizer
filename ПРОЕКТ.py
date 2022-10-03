@@ -14,13 +14,14 @@ def website(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     button1 = types.KeyboardButton('Калькулятор')
     button2 = types.KeyboardButton('Прогноз подгоды')
+
     # формируем структуру
     markup.add(button1, button2)
     # приветствуем пользователя с обращение по имени
-    bot.send_message(message.chat.id, f'''Привет, {message.from_user.first_name}!
+    bot.send_message(message.chat.id, f'''<b>Привет, {message.from_user.first_name}</b>!
 Я БОТ-ОРГАНАЙЗЕР
 пользуйся наздоровье :)
-выбери что тебе нужно''', reply_markup=markup) #reply_markup=keyboard для присвоения кнопок
+выбери что тебе нужно''', parse_mode='html', reply_markup=markup) #reply_markup=keyboard для присвоения кнопок
 
 # выбираем кнопки (прогноз погоды будет тут же, еще в разработке)
 @bot.message_handler(content_types=['text'])

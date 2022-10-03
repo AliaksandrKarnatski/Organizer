@@ -10,7 +10,7 @@ from telebot import types
 import requests
 
 # указываем к камому боту обращаемся, в класс TeleBot прописываем бот, с которым будем взаимодействовать
-bot = telebot.TeleBot('5753975786:AAGRftFcIjD7Rh_5GZP44pnU7D2lw0ZwPNU') # t.me/pjojekt12345678Bot
+bot = telebot.TeleBot('') # t.me/pjojekt12345678Bot
 
 
 # для отслеживания команд прописываем декоратор с обращением к специальному методу message_handler

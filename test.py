@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 import requests
 
-bot = telebot.TeleBot('5753975786:AAGRftFcIjD7Rh_5GZP44pnU7D2lw0ZwPNU')  # @pjojekt12345678Bot
+bot = telebot.TeleBot('')  # @pjojekt12345678Bot
 
 @bot.message_handler(commands=['start'])
 def website(message):

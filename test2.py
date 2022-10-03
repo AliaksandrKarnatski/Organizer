@@ -8,9 +8,9 @@ from aiogram import Bot, types
 # from aiogram.dispatcher import Dispatcher
 # from aiogram.utils import executor
 
-bot = telebot.TeleBot('5540571238:AAEXAT_0XVt_l_wb7864JgZdSvtGq5M0tyo')  # @test324234324_bot
+bot = telebot.TeleBot('')  # @test324234324_bot
 # bot = Bot(token=tg_bot_token)
-# dp = telebot.TeleBot('5540571238:AAEXAT_0XVt_l_wb7864JgZdSvtGq5M0tyo')
+# dp = telebot.TeleBot('')
 
 @bot.message_handler(commands=['start'])
 def website(message):

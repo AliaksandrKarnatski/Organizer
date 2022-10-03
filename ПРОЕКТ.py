@@ -13,7 +13,7 @@ def website(message):
     # создаем стандартные кнопки (resize_keyboard=True - для корректного вывода кнопок на ПК и телефоне)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
     button1 = types.KeyboardButton('Калькулятор')
-    button2 = types.KeyboardButton('Прогноз подгоды')
+    button2 = types.KeyboardButton('Скоро будет еще')
 
     # формируем структуру
     markup.add(button1, button2)
